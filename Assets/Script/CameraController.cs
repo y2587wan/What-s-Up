@@ -43,15 +43,15 @@ public class CameraController : MonoBehaviour {
     private void ChangeDistance()
     {
         var factor = distance / originalDistance;
-        // Debug.Log("Factor: " + factor);
-        if (factor / originalFactor > 1f)
-        {
+         Debug.Log("Factor: " + factor);
+        //if (factor / originalFactor > 1f)
+        //{
             targetOrtho = targetOrtho * factor;
             targetOrtho = Mathf.Clamp(targetOrtho, minSize, maxSize);
             Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetOrtho, smoothSpeed * Time.deltaTime);
             transform.position = new Vector3(transform.position.x, cameraY + Camera.main.orthographicSize, transform.position.z);
             originalFactor = factor;
             originalDistance = distance;
-        }
+        //}
     }
 }

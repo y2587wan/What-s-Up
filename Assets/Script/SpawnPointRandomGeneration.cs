@@ -41,7 +41,11 @@ public class SpawnPointRandomGeneration : MonoBehaviour {
         {
             RandomGeneration(transformerEnter, transformerArea, transformer.transform);
             RandomGeneration(transformerExit, transformerArea, transformer.transform);
-            transformer.transform.GetChild(0).GetComponent<DoorTransport>().ExistPoint = transformer.transform.GetChild(1);
+            var enter = transformer.transform.GetChild(0);
+            var exit = transformer.transform.GetChild(1);
+            exit.position = new Vector2(exit.position.x, enter.position.y);
+            enter.GetComponent<DoorTransport>().ExistPoint = exit;
+            exit.GetComponent<DoorTransport>().ExistPoint = enter;
         }
     }
 
