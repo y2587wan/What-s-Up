@@ -936,6 +936,17 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114847229296620966, guid: 9064b6b929dfe7a4381dc53fe0c15e75,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 1503839122423490, guid: 779b79fcc586dc343bf7aa322d391c13,
+        type: 2}
+    - target: {fileID: 114847229296620966, guid: 9064b6b929dfe7a4381dc53fe0c15e75,
+        type: 2}
+      propertyPath: shootForce
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9064b6b929dfe7a4381dc53fe0c15e75, type: 2}
   m_IsPrefabParent: 0
@@ -1132,7 +1143,7 @@ Prefab:
     - target: {fileID: 114847229296620966, guid: 9064b6b929dfe7a4381dc53fe0c15e75,
         type: 2}
       propertyPath: shootForce
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114847229296620966, guid: 9064b6b929dfe7a4381dc53fe0c15e75,
         type: 2}
@@ -1180,6 +1191,12 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114847229296620966, guid: 9064b6b929dfe7a4381dc53fe0c15e75,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 1503839122423490, guid: 779b79fcc586dc343bf7aa322d391c13,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9064b6b929dfe7a4381dc53fe0c15e75, type: 2}
   m_IsPrefabParent: 0
