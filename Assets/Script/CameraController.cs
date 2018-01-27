@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour {
 
     public GameObject player1;
     public GameObject player2;
-    public float smoothSpeed = 10.0f;
+    public float smoothSpeed = 1.0f;
     public float sizeFactor;
 
     private float distance;
@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour {
     private float cameraY;
     private float minSize;
     private float maxSize;
+    private float originalFactor = 1;
 
 	void Start () {
         targetOrtho = Camera.main.orthographicSize;
@@ -35,16 +36,22 @@ public class CameraController : MonoBehaviour {
 
     private void PlayerDistance()
     {
-        distance = Vector2.Distance(player1.transform.position, player2.transform.position);
+        distance = player1.transform.position.y / player2.transform.position.y;
         // Debug.Log("Distance: " + distance);
     }
 
     private void ChangeDistance()
     {
-        targetOrtho = targetOrtho * (distance / originalDistance);
-        targetOrtho = Mathf.Clamp(targetOrtho, minSize, maxSize);
-        Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetOrtho, smoothSpeed * Time.deltaTime);
-        transform.position = new Vector3(transform.position.x, cameraY + Camera.main.orthographicSize, transform.position.z);
-        originalDistance = distance;
+        var factor = distance / originalDistance;
+        Debug.Log("Factor: " + factor);
+        if (factor / originalFactor > 1f)
+        {
+            targetOrtho = targetOrtho * factor;
+            targetOrtho = Mathf.Clamp(targetOrtho, minSize, maxSize);
+            Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetOrtho, smoothSpeed * Time.deltaTime);
+            transform.position = new Vector3(transform.position.x, cameraY + Camera.main.orthographicSize, transform.position.z);
+            originalFactor = factor;
+            originalDistance = distance;
+        }
     }
 }
