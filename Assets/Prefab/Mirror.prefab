@@ -21,8 +21,9 @@ GameObject:
   - component: {fileID: 4072060593483964}
   - component: {fileID: 212785582059429226}
   - component: {fileID: 61678176715175548}
+  - component: {fileID: 114739040845236106}
   m_Layer: 10
-  m_Name: Shield
+  m_Name: Mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1454786086117326}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -0.102, y: 3.202, z: 0}
-  m_LocalScale: {x: 1.7220336, y: 0.15579817, z: 1}
+  m_LocalScale: {x: 0.15, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -66,6 +67,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114739040845236106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1454786086117326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b06856b1e9a5ab4683de4e7c99c709d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxExistingTime: 2
 --- !u!212 &212785582059429226
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4278398842835596}
   - component: {fileID: 212514299189233706}
   - component: {fileID: 61712328073104764}
+  - component: {fileID: 114675642905342128}
   - component: {fileID: 114179949326256428}
   m_Layer: 10
   m_Name: Shield
@@ -51,7 +52,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -79,6 +80,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxExistingTime: 1
+--- !u!114 &114675642905342128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1868039972050414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3e75438f2e208499b9255ccf9d85f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212514299189233706
 SpriteRenderer:
   m_ObjectHideFlags: 1

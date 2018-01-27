@@ -6,6 +6,7 @@ public class SpawnPointRandomGeneration : MonoBehaviour {
 
     public GameObject mirror;
     public GameObject powerUp;
+    public GameObject energyUp;
     public Collider2D area;
     public float spawnTime;
     public int maxNumOfPoint = 10;
@@ -24,6 +25,7 @@ public class SpawnPointRandomGeneration : MonoBehaviour {
         {
             RandomGeneration(powerUp);
             RandomGeneration(mirror);
+            RandomGeneration(energyUp);
             timeCounter = 0;
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     public KeyCode rotateRight;
     public KeyCode shootButton;
     public KeyCode defenceKey;
+    public Text playerTitle;
     public float jumpForce;
     public string playerName;
     public float shootForce;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         zAxis = new Vector3(0, 0, 1);
+        playerTitle.text = playerName;
 	}
 	
 	void Update () {
@@ -102,6 +105,13 @@ public class PlayerController : MonoBehaviour {
                 rb2d.AddForce(new Vector2(0, jumpForce));
             else
                 rb2d.AddForce(new Vector2(0, -jumpForce));
+            Destroy(collision.gameObject);
+        }
+
+        if (jumpCollectCounter < maxJumpNum && collision.CompareTag("Energy"))
+        {
+            EnergyCount++;
+            Debug.Log(playerName + " energy count: " + EnergyCount);
             Destroy(collision.gameObject);
         }
 
