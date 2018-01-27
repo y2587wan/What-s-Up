@@ -4,35 +4,55 @@ using UnityEngine;
 
 public class SpawnPointRandomGeneration : MonoBehaviour {
 
-    public GameObject item;
-    public Collider2D area;
+    public GameObject mirror;
+    public GameObject powerUp;
+    public GameObject energyUp;
+    public GameObject transformer;
+    public GameObject transformerEnter;
+    public GameObject transformerExit;
+    public Collider2D uperArea;
     public float spawnTime;
+    public float transformerSpawnTime;
+    public int maxNumOfPoint = 10;
 
     private float timeCounter = 0;
+    private float transformerTime = 0;
+    private Collider2D transformerArea;
 
     void Start () {
-        RandomGeneration();
+        transformerArea = transformer.GetComponent<BoxCollider2D>();
+        RandomGeneration(powerUp, uperArea, transform);
     }
 	
 	// Update is called once per frame
 	void Update () {
         timeCounter += Time.deltaTime;
+        transformerTime += Time.deltaTime;
         //Debug.Log(timeCounter);
-        if(timeCounter >= spawnTime)
+        if(timeCounter >= spawnTime && transform.childCount < maxNumOfPoint)
         {
-            RandomGeneration();
+            RandomGeneration(powerUp, uperArea, transform);
+            RandomGeneration(mirror, uperArea, transform);
+            RandomGeneration(energyUp, uperArea, transform);
             timeCounter = 0;
+        }
+
+        if (transformerTime > transformerSpawnTime && transformer.transform.childCount < 2)
+        {
+            RandomGeneration(transformerEnter, transformerArea, transformer.transform);
+            RandomGeneration(transformerExit, transformerArea, transformer.transform);
+            transformer.transform.GetChild(0).GetComponent<DoorTransport>().ExistPoint = transformer.transform.GetChild(1);
         }
     }
 
-    void RandomGeneration()
+    void RandomGeneration(GameObject item, Collider2D area, Transform parent)
     {
         Vector2 minPoint = area.bounds.min;
         Vector2 maxPoint = area.bounds.max;
-        float x = Random.Range(minPoint.x + 1, maxPoint.x - 1);
-        float y = Random.Range(minPoint.y + 1, maxPoint.y - 1);
+        float x = Random.Range(minPoint.x + 0.1f, maxPoint.x - 0.1f);
+        float y = Random.Range(minPoint.y + 0.1f, maxPoint.y - 0.1f);
         Vector2 generatePoint = new Vector2(x, y);
         var child = (GameObject)Instantiate(item, generatePoint, Quaternion.Euler(Vector3.zero));
-        child.transform.parent = gameObject.transform;
+        child.transform.parent = parent;
     }
 }
