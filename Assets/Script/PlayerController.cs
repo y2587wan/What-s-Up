@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
     public Transform rotatePoint;
     public GameObject bullet;   
     public int maxJumpNum = 5;
-    public GameObject bulletGameManager;
+    // public GameObject bulletGameManager;
 
     private float rotateClockwise = 1;
     private float moveHorizontal = 0;
@@ -38,19 +38,20 @@ public class PlayerController : MonoBehaviour {
 
     private void ShootBullet()
     {
-        var bulletCount = bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName];
-        if (Input.GetKey(shootButton) && bulletCount == 0)
+        // var bulletCount = bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName];
+        if (Input.GetKey(shootButton) && transform.parent.childCount < 2)
         {
-            Debug.Log(playerName + bulletCount);
+            //Debug.Log(playerName + bulletCount);
             var child = (GameObject)Instantiate(bullet, rotatePoint.position, Quaternion.Euler(Vector3.zero));
             child.GetComponent<LaserController>().PlayerName = playerName;
-            child.transform.parent = bulletGameManager.transform;
+            // child.transform.parent = bulletGameManager.transform;
+            child.transform.parent = transform.parent;
             var childRb2d = child.GetComponent<Rigidbody2D>();
             childRb2d.velocity = Vector2.zero;
             var direction = rotatePoint.position - transform.position;
             var shootingSpeed = direction.normalized * shootForce;
             childRb2d.AddForce(shootingSpeed);
-            bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName]++;
+            // bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName]++;
         }
     }
 

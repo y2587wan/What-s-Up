@@ -4,28 +4,31 @@ using UnityEngine;
 
 public class SpawnPointRandomGeneration : MonoBehaviour {
 
-    public GameObject item;
+    public GameObject mirror;
+    public GameObject powerUp;
     public Collider2D area;
     public float spawnTime;
+    public int maxNumOfPoint = 10;
 
     private float timeCounter = 0;
 
     void Start () {
-        RandomGeneration();
+        RandomGeneration(powerUp);
     }
 	
 	// Update is called once per frame
 	void Update () {
         timeCounter += Time.deltaTime;
         //Debug.Log(timeCounter);
-        if(timeCounter >= spawnTime)
+        if(timeCounter >= spawnTime && transform.childCount < maxNumOfPoint)
         {
-            RandomGeneration();
+            RandomGeneration(powerUp);
+            RandomGeneration(mirror);
             timeCounter = 0;
         }
     }
 
-    void RandomGeneration()
+    void RandomGeneration(GameObject item)
     {
         Vector2 minPoint = area.bounds.min;
         Vector2 maxPoint = area.bounds.max;

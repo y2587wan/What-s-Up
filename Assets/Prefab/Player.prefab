@@ -81,8 +81,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1239606897194314}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.736792, y: -1.1415697, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.023208141, y: -1.1415697, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4142913314253994}
@@ -193,7 +193,7 @@ MonoBehaviour:
   shootButton: 280
   jumpForce: 0
   playerName: Player 1
-  shootForce: 5
+  shootForce: 1
   rotatePoint: {fileID: 4928472987462742}
   bullet: {fileID: 1292381670063784, guid: a6e4a6d9c0502e14e9c2f4e230201e50, type: 2}
   maxJumpNum: 5
