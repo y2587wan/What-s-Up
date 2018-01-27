@@ -190,9 +190,14 @@ MonoBehaviour:
   rightKey: 275
   rotateLeft: 273
   rotateRight: 274
-  force: 100
+  shootButton: 280
+  jumpForce: 0
   playerName: Player 1
+  shootForce: 5
   rotatePoint: {fileID: 4928472987462742}
+  bullet: {fileID: 1292381670063784, guid: a6e4a6d9c0502e14e9c2f4e230201e50, type: 2}
+  maxJumpNum: 5
+  bulletGameManager: {fileID: 0}
 --- !u!212 &212058557965569424
 SpriteRenderer:
   m_ObjectHideFlags: 1

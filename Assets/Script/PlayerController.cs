@@ -10,10 +10,14 @@ public class PlayerController : MonoBehaviour {
     public KeyCode rightKey;
     public KeyCode rotateLeft;
     public KeyCode rotateRight;
-    public float force;
+    public KeyCode shootButton;
+    public float jumpForce;
     public string playerName;
+    public float shootForce;
     public Transform rotatePoint;
+    public GameObject bullet;   
     public int maxJumpNum = 5;
+    public GameObject bulletGameManager;
 
     private float rotateClockwise = 1;
     private float moveHorizontal = 0;
@@ -29,6 +33,25 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         MoveMementControl();
         RotateShootPoint();
+        ShootBullet();
+    }
+
+    private void ShootBullet()
+    {
+        var bulletCount = bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName];
+        if (Input.GetKey(shootButton) && bulletCount == 0)
+        {
+            Debug.Log(playerName + bulletCount);
+            var child = (GameObject)Instantiate(bullet, rotatePoint.position, Quaternion.Euler(Vector3.zero));
+            child.GetComponent<LaserController>().PlayerName = playerName;
+            child.transform.parent = bulletGameManager.transform;
+            var childRb2d = child.GetComponent<Rigidbody2D>();
+            childRb2d.velocity = Vector2.zero;
+            var direction = rotatePoint.position - transform.position;
+            var shootingSpeed = direction.normalized * shootForce;
+            childRb2d.AddForce(shootingSpeed);
+            bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName]++;
+        }
     }
 
     private void RotateShootPoint()
@@ -59,16 +82,23 @@ public class PlayerController : MonoBehaviour {
         {
             jumpCollectCounter++;
             if (rb2d.velocity.y > 0)
-                rb2d.AddForce(new Vector2(0, force));
+                rb2d.AddForce(new Vector2(0, jumpForce));
             else
-                rb2d.AddForce(new Vector2(0, -force));
+                rb2d.AddForce(new Vector2(0, -jumpForce));
             Destroy(collision.gameObject);
         }
 
         if (collision.CompareTag("Head"))
         {
-            Destroy(collision.transform.parent.gameObject);
+            var otherPlayer = collision.transform.parent.gameObject;
+            Destroy(otherPlayer);
             Debug.Log(playerName + " Win!");
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Laser"))
+            Destroy(gameObject);
     }
 }
