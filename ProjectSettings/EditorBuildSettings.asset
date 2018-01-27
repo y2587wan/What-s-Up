@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Shooting.unity
     guid: dc2456b4c86b6c349bc0c24355d8a883
+  - enabled: 1
+    path: Assets/Scene/OptionsMenu.unity
+    guid: 36f56c9dc0b6a254985865be0b9c81c8
