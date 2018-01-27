@@ -11,13 +11,16 @@ public class PlayerController : MonoBehaviour {
     public KeyCode rotateLeft;
     public KeyCode rotateRight;
     public KeyCode shootButton;
+    public KeyCode defenceKey;
     public float jumpForce;
     public string playerName;
     public float shootForce;
     public Transform rotatePoint;
-    public GameObject bullet;   
+    public GameObject bullet;
+    public GameObject shield;
     public int maxJumpNum = 5;
     // public GameObject bulletGameManager;
+    public int EnergyCount { get; set; }
 
     private float rotateClockwise = 1;
     private float moveHorizontal = 0;
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour {
         MoveMementControl();
         RotateShootPoint();
         ShootBullet();
+        DefenceShield();
     }
 
     private void ShootBullet()
@@ -41,7 +45,7 @@ public class PlayerController : MonoBehaviour {
         // var bulletCount = bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName];
         if (Input.GetKey(shootButton) && transform.parent.childCount < 2)
         {
-            //Debug.Log(playerName + bulletCount);
+            //Debug.Log(playerName + " " + bulletCount);
             var child = (GameObject)Instantiate(bullet, rotatePoint.position, Quaternion.Euler(Vector3.zero));
             child.GetComponent<LaserController>().PlayerName = playerName;
             // child.transform.parent = bulletGameManager.transform;
@@ -50,8 +54,20 @@ public class PlayerController : MonoBehaviour {
             childRb2d.velocity = Vector2.zero;
             var direction = rotatePoint.position - transform.position;
             var shootingSpeed = direction.normalized * shootForce;
-            childRb2d.AddForce(shootingSpeed);
+            childRb2d.AddForce(shootingSpeed * (EnergyCount + 1));
+            EnergyCount = 0;
+            Debug.Log("Energy: " + EnergyCount);
             // bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName]++;
+        }
+    }
+
+    private void DefenceShield()
+    {
+        // Debug.Log("Shield num: " + rotatePoint.childCount);
+        if (Input.GetKey(defenceKey) && rotatePoint.childCount == 0)
+        {
+            var child = (GameObject)Instantiate(shield, rotatePoint.position, rotatePoint.rotation);
+            child.transform.parent = rotatePoint;
         }
     }
 
