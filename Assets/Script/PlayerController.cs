@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour {
         if (collision.CompareTag("Head"))
         {
             Destroy(collision.transform.parent.gameObject);
+            Debug.Log(playerName + " Win!");
         }
     }
 }
