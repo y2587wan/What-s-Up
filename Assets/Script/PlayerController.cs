@@ -32,10 +32,13 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb2d;
     private Vector3 zAxis;
     private int jumpCollectCounter = 0;
+    private Animator animator;
+    private bool isJump = false;
 
 	void Start () {
         sound = GetComponents<AudioSource>();
         rb2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         zAxis = new Vector3(0, 0, 1);
         playerTitle = transform.GetChild(2).GetChild(0).GetComponent<Text>();
         playerTitle.text = playerName;
@@ -46,12 +49,22 @@ public class PlayerController : MonoBehaviour {
         RotateShootPoint();
         ShootBullet();
         DefenceShield();
+        PlayerAnimation();
+    }
+
+    private void PlayerAnimation()
+    {
+        if (rb2d.velocity.y > 0)
+            animator.SetBool("isJump", true);
+        else
+            animator.SetBool("isJump", false);
+
     }
 
     private void ShootBullet()
     {
         // var bulletCount = bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName];
-        if (Input.GetKey(shootButton) && transform.parent.childCount < 2)
+        if (Input.GetKey(shootButton) && rotatePoint.childCount < 1 && transform.parent.childCount < 2)
         {
             //Debug.Log(playerName + " " + bulletCount);
             var child = (GameObject)Instantiate(bullet, rotatePoint.position, Quaternion.Euler(Vector3.zero));
