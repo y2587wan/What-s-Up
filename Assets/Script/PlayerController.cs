@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     public KeyCode shootButton;
     public KeyCode defenceKey;
     public Text playerTitle;
+    public Text energyText;
     public float jumpForce;
     public string playerName;
     public float shootForce;
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour {
             var shootingSpeed = direction.normalized * shootForce;
             childRb2d.AddForce(shootingSpeed * (EnergyCount + 1));
             EnergyCount = 0;
+            energyText.text = playerName + " energy: " + EnergyCount;   
             // Debug.Log("Energy: " + EnergyCount);
             // bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName]++;
         }
@@ -112,13 +114,14 @@ public class PlayerController : MonoBehaviour {
         {
             EnergyCount++;
             Debug.Log(playerName + " energy count: " + EnergyCount);
+            energyText.text = playerName + " energy: " + EnergyCount;
             Destroy(collision.gameObject);
         }
 
         if (collision.CompareTag("Head"))
         {
             var otherPlayer = collision.transform.parent.gameObject;
-            Destroy(otherPlayer);
+            Destroy(otherPlayer.transform.parent.gameObject);
             Debug.Log(playerName + " Win!");
         }
     }
