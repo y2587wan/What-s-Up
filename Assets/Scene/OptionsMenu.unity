@@ -317,12 +317,12 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "In this game, two players can consume small red boosts to jump higher and
-    consume yellow energy points\uFF08bolts) to increase their shooting rate. Every
-    player should shoot light to hit the other or step on another player to win the
-    game. There are some pieces of mirrors to reflect light. Also, there are two portals
+    consume yellow energy points\uFF08) to increase their shooting rate. Every player
+    should shoot light to hit the other or step on another player to win the game.
+    There are some pieces of mirrors to reflect light. Also, there are two portals
     in the bottom which can send players to another portal.\nPlayers can use A/J to
-    move to left, D/L to move to right.\nW/I to spin clockwise and S/K to spin counter
-    clockwise.\nMoreover, Q/U are used to shoot the others\nand E/O are used to raise
+    move to left, D/L to move to right.\nQ/U to spin clockwise and E/O to spin counter
+    clockwise.\nMoreover, W/I are used to shoot the others\nand S/K are used to raise
     a shield to prevent from taking damage.\n"
 --- !u!222 &508522106
 CanvasRenderer:

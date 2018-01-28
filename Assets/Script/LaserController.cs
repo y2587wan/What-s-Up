@@ -43,7 +43,7 @@ public class LaserController : MonoBehaviour {
             doesNextPointExist = true;
         }
 
-        if (timeCounter > maxTime)
+		if (timeCounter > maxTime && gameObject != null && nextPoint != null)
         {
             nextPoint.transform.position = previousPoint;
             nextPoint.GetComponent<Rigidbody2D>().velocity = previousSpeed;
