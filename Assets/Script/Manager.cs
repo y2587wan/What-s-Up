@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class Manager : MonoBehaviour {
 
     public Text winText;
+    private int time = 10;
 
 	void Update () {
-        WinCondition();
+        StartCoroutine(WaitforSecond(time));
     }
 
     private void WinCondition()
@@ -23,5 +24,11 @@ public class Manager : MonoBehaviour {
             winText.gameObject.SetActive(true);
             winText.text = transform.GetChild(0).GetChild(0).GetComponent<PlayerController>().playerName + " Win!!";
         }
+    }
+
+    private IEnumerator WaitforSecond(int time)
+    {
+        yield return new WaitForSeconds(time);
+        WinCondition();
     }
 }

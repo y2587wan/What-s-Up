@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour {
             var shootingSpeed = direction.normalized * shootForce;
             childRb2d.AddForce(shootingSpeed * (EnergyCount + 1));
             EnergyCount = 0;
-            energyText.text = playerName + " energy: " + EnergyCount;   
+            // energyText.text = playerName + " energy: " + EnergyCount;   
             // Debug.Log("Energy: " + EnergyCount);
             // bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName]++;
         }
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour {
         {
             EnergyCount++;
             Debug.Log(playerName + " energy count: " + EnergyCount);
-            energyText.text = playerName + " energy: " + EnergyCount;
+            //energyText.text = playerName + " energy: " + EnergyCount;
             Destroy(collision.gameObject);
         }
 
