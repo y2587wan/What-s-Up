@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         zAxis = new Vector3(0, 0, 1);
+        playerTitle = transform.GetChild(2).GetChild(0).GetComponent<Text>();
         playerTitle.text = playerName;
 	}
 	
