@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     // public GameObject bulletGameManager;
     public int EnergyCount { get; set; }
 
+    private AudioSource[] sound;
     private float rotateClockwise = 1;
     private float moveHorizontal = 0;
     private Rigidbody2D rb2d;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour {
     private int jumpCollectCounter = 0;
 
 	void Start () {
+        sound = GetComponents<AudioSource>();
         rb2d = GetComponent<Rigidbody2D>();
         zAxis = new Vector3(0, 0, 1);
         playerTitle = transform.GetChild(2).GetChild(0).GetComponent<Text>();
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour {
             var shootingSpeed = direction.normalized * shootForce;
             childRb2d.AddForce(shootingSpeed * (EnergyCount + 1));
             EnergyCount = 0;
+            sound[0].Play();
             // energyText.text = playerName + " energy: " + EnergyCount;   
             // Debug.Log("Energy: " + EnergyCount);
             // bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName]++;
@@ -103,6 +106,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (jumpCollectCounter < maxJumpNum && collision.CompareTag("PowerUp"))
         {
+            sound[1].Play();
             jumpCollectCounter++;
             if (rb2d.velocity.y > 0)
                 rb2d.AddForce(new Vector2(0, jumpForce));
@@ -111,25 +115,35 @@ public class PlayerController : MonoBehaviour {
             Destroy(collision.gameObject);
         }
 
-        if (jumpCollectCounter < maxJumpNum && collision.CompareTag("Energy"))
+        else if (jumpCollectCounter < maxJumpNum && collision.CompareTag("Energy"))
         {
             EnergyCount++;
             Debug.Log(playerName + " energy count: " + EnergyCount);
             //energyText.text = playerName + " energy: " + EnergyCount;
             Destroy(collision.gameObject);
+            sound[1].Play();
         }
 
-        if (collision.CompareTag("Head"))
+        else if (collision.CompareTag("Head"))
         {
             var otherPlayer = collision.transform.parent.gameObject;
             Destroy(otherPlayer.transform.parent.gameObject);
             Debug.Log(playerName + " Win!");
+            sound[3].Play();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Laser"))
+        {
             Destroy(transform.parent.gameObject);
+            sound[3].Play();
+        }
+        else if (collision.gameObject.CompareTag("Ground"))
+        {
+            sound[2].Play();
+        }
+            
     }
 }

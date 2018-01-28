@@ -8,6 +8,7 @@ TagManager:
   - Head
   - Laser
   - Energy
+  - Ground
   layers:
   - Default
   - TransparentFX
