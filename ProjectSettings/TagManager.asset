@@ -9,6 +9,7 @@ TagManager:
   - Laser
   - Energy
   - Ground
+  - BGM
   layers:
   - Default
   - TransparentFX

@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scene/Start.unity
     guid: 9a107424d52265549abb13f60fd49402
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scene/Main.unity
     guid: e52db4f28b6682f478cbff019c835582
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scene/OptionsMenu.unity
     guid: 0caf3a80011c37a40b7c6ccd686b5603
   - enabled: 0
@@ -23,6 +23,6 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/WebTest.unity
     guid: 1cc4959d7256fce4581a2bc1ca7ccb17
