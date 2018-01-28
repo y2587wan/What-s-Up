@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Manager : MonoBehaviour {
 
     public Text winText;
-    private int time = 10;
+    private int time = 1;
 
 	void Update () {
         StartCoroutine(WaitforSecond(time));

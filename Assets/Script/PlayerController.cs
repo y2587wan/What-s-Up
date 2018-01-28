@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
     public Transform rotatePoint;
     public GameObject bullet;
     public GameObject shield;
+    public GameObject deathParticle;
     public int maxJumpNum = 5;
     // public GameObject bulletGameManager;
     public int EnergyCount { get; set; }
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour {
             childRb2d.AddForce(shootingSpeed * (EnergyCount + 1));
             EnergyCount = 0;
             sound[0].Play();
-            // energyText.text = playerName + " energy: " + EnergyCount;   
+             energyText.text = playerName + " energy: " + EnergyCount;   
             // Debug.Log("Energy: " + EnergyCount);
             // bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName]++;
         }
@@ -112,6 +113,7 @@ public class PlayerController : MonoBehaviour {
                 rb2d.AddForce(new Vector2(0, jumpForce));
             else
                 rb2d.AddForce(new Vector2(0, -jumpForce));
+            
             Destroy(collision.gameObject);
         }
 
@@ -119,13 +121,14 @@ public class PlayerController : MonoBehaviour {
         {
             EnergyCount++;
             Debug.Log(playerName + " energy count: " + EnergyCount);
-            //energyText.text = playerName + " energy: " + EnergyCount;
+            energyText.text = playerName + " energy: " + EnergyCount;
             Destroy(collision.gameObject);
             sound[1].Play();
         }
 
         else if (collision.CompareTag("Head"))
         {
+            Instantiate(deathParticle, collision.transform.position, Quaternion.identity);
             var otherPlayer = collision.transform.parent.gameObject;
             Destroy(otherPlayer.transform.parent.gameObject);
             Debug.Log(playerName + " Win!");
@@ -137,6 +140,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Laser"))
         {
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
             Destroy(transform.parent.gameObject);
             sound[3].Play();
         }
