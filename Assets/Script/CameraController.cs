@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour {
     private void ChangeDistance()
     {
         var factor = distance / originalDistance;
-        Debug.Log("Factor: " + factor);
+        // Debug.Log("Factor: " + factor);
         if (factor / originalFactor > 1f)
         {
             targetOrtho = targetOrtho * factor;

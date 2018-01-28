@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour {
             var shootingSpeed = direction.normalized * shootForce;
             childRb2d.AddForce(shootingSpeed * (EnergyCount + 1));
             EnergyCount = 0;
-            Debug.Log("Energy: " + EnergyCount);
+            // Debug.Log("Energy: " + EnergyCount);
             // bulletGameManager.GetComponent<BulletManager>().PlayerLaser[playerName]++;
         }
     }
@@ -126,6 +126,6 @@ public class PlayerController : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Laser"))
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
     }
 }
