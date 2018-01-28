@@ -11,6 +11,7 @@ public class SpawnPointRandomGeneration : MonoBehaviour {
     public GameObject transformerEnter;
     public GameObject transformerExit;
     public Collider2D uperArea;
+    public Collider2D rightArea;
     public float spawnTime;
     public float transformerSpawnTime;
     public int maxNumOfPoint = 10;
@@ -33,8 +34,7 @@ public class SpawnPointRandomGeneration : MonoBehaviour {
         {
             RandomGeneration(powerUp, uperArea, transform);
             RandomGeneration(mirror, uperArea, transform);
-            RandomGeneration(energyUp, uperArea, transform);
-            timeCounter = 0;
+            RandomGeneration(energyUp, rightArea, transform);
         }
 
         if (transformerTime > transformerSpawnTime && transformer.transform.childCount < 2)

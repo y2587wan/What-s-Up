@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject bullet;
     public GameObject shield;
     public GameObject deathParticle;
+    public Color color;
     public int maxJumpNum = 5;
     // public GameObject bulletGameManager;
     public int EnergyCount { get; set; }
@@ -34,17 +35,23 @@ public class PlayerController : MonoBehaviour {
     private int jumpCollectCounter = 0;
     private Animator animator;
     private bool isJump = false;
+    private SpriteRenderer sprite;
+    
 
 	void Start () {
+        color = new Color(Random.Range(0.7f, 1f), Random.Range(0.7f, 1f), Random.Range(0.7f, 1f));
         sound = GetComponents<AudioSource>();
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         zAxis = new Vector3(0, 0, 1);
         playerTitle = transform.GetChild(2).GetChild(0).GetComponent<Text>();
         playerTitle.text = playerName;
+        sprite = GetComponent<SpriteRenderer>();
+        sprite.color = color;
 	}
 	
 	void Update () {
+        sprite.color = color;
         MoveMementControl();
         RotateShootPoint();
         ShootBullet();
