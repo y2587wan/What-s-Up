@@ -38,6 +38,7 @@ public class LaserController : MonoBehaviour {
         if (!doesNextPointExist && timeCounter > maxTime / 2)
         {
             nextPoint = (GameObject)Instantiate(laserPoint, previousPoint, transform.rotation);
+            nextPoint.transform.parent = transform;
             nextPoint.GetComponent<Rigidbody2D>().velocity = previousSpeed;
             doesNextPointExist = true;
         }
